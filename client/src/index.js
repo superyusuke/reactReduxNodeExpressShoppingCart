@@ -3,13 +3,11 @@ import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
-import logger from 'redux-logger'
-import './index.css';
+import logger from 'redux-logger';
 import App from './App';
+import BookList from './components/pages/BookList';
 import rootReducer from './reducers';
-import {postBooks} from './actions/bookActions';
-import {updateBook} from './actions/bookActions';
-import {deleteBook} from './actions/bookActions';
+import {postBooks, updateBook, deleteBook} from './actions/bookActions';
 import {addToCart} from './actions/cartActions';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -41,15 +39,15 @@ store.dispatch(updateBook({
   price: 10000,
 }));
 
-store.dispatch(deleteBook({
-  id: 1,
-}));
+// store.dispatch(deleteBook({
+//   id: 1,
+// }));
 
 store.dispatch(addToCart([{id: 1}]));
 
 ReactDOM.render(
     <Provider store={store}>
-      <App/>
+      <BookList/>
     </Provider>,
     document.getElementById('root'));
 registerServiceWorker();
