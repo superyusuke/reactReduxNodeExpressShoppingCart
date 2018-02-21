@@ -50,12 +50,6 @@ store.dispatch(updateBook({
   price: 10000,
 }));
 
-// store.dispatch(deleteBook({
-//   id: 1,
-// }));
-
-store.dispatch(addToCart([{id: 1}]));
-
 ReactDOM.render(
     <Provider store={store}>
       <BookList/>

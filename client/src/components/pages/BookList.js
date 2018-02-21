@@ -1,4 +1,5 @@
 import React from 'react';
+import Cart from './Cart';
 import BookItem from './BookItem';
 import BookForm from './BookForm';
 
@@ -13,6 +14,7 @@ class BookList extends React.Component {
 
     return (
         <Grid>
+          <Cart/>
           <Row>
             <Col xs={12} sm={6}>
               <BookForm/>
