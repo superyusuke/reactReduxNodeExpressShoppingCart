@@ -60,7 +60,11 @@ class Cart extends React.Component {
       return this.renderCart();
     }
 
-    return null;
+    return (
+        <Panel bsStyle='primary'>
+          <Panel.Heading>Cart</Panel.Heading>
+        </Panel>
+    );
   }
 
   onIncrement = (id) => {
