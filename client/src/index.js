@@ -30,6 +30,18 @@ const testBooks = [
     description: 'description2',
     price: 60,
   },
+  {
+    id: 3,
+    title: 'title3',
+    description: 'description3',
+    price: 100,
+  },
+  {
+    id: 4,
+    title: 'title4',
+    description: 'description4',
+    price: 260,
+  },
 ];
 
 store.dispatch(postBooks(testBooks));
