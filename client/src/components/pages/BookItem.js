@@ -18,26 +18,25 @@ class BookItem extends React.Component {
   }
 
   handleButtonClick = () => {
-    const {id, title, description, price, cart} = this.props;
+    const {id, title, description, price, cart, addToCart, updateToCart} = this.props;
     const bookToAddToCart = {
       id, title, description, price, quantity: 1,
     };
 
     if (cart.length > 0) {
       const targetItemIndex = cart.findIndex(item => item.id === id);
-      console.log(targetItemIndex);
       if (targetItemIndex < 0) {
-        this.props.addToCart([bookToAddToCart]);
+        addToCart([bookToAddToCart]);
         return;
       }
 
       if (targetItemIndex >= 0) {
-        this.props.updateToCart(id, 1);
+        updateToCart(id, 1);
         return;
       }
     }
 
-    this.props.addToCart([bookToAddToCart]);
+    addToCart([bookToAddToCart]);
   };
 }
 

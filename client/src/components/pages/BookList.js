@@ -8,7 +8,8 @@ import {connect} from 'react-redux';
 
 class BookList extends React.Component {
   render() {
-    const bookList = this.props.books.map(book => {
+    const {books} = this.props;
+    const bookList = books.map(book => {
       return (<BookItem key={book.id}  {...book}/>);
     });
 

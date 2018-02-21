@@ -13,7 +13,8 @@ import {
 
 class Cart extends React.Component {
   renderCart() {
-    const cartItems = this.props.cart.map((item) => {
+    const {cart} = this.props;
+    const cartItems = cart.map((item) => {
       return (
           <Panel>
             <Panel.Body>
@@ -67,8 +68,9 @@ class Cart extends React.Component {
   };
 
   onDecrement = (id) => {
-    const targetIndex = this.props.cart.findIndex(item => item.id === id);
-    if (this.props.cart[targetIndex].quantity < 1) {
+    const {cart} = this.props;
+    const targetIndex = cart.findIndex(item => item.id === id);
+    if (cart[targetIndex].quantity < 1) {
       return;
     }
     this.props.updateToCart(id, -1);
