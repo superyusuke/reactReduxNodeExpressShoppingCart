@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
+import logger from 'redux-logger'
 import './index.css';
 import App from './App';
 import rootReducer from './reducers';
@@ -11,7 +13,10 @@ import {deleteBook} from './actions/bookActions';
 import {addToCart} from './actions/cartActions';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools(
+    applyMiddleware(logger),
+));
+
 store.subscribe(() => console.log(store.getState()));
 
 const testBooks = [
