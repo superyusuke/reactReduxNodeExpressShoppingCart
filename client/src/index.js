@@ -4,10 +4,9 @@ import {createStore, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
 import logger from 'redux-logger';
-import App from './App';
 import BookList from './components/pages/BookList';
 import rootReducer from './reducers';
-import {postBooks, updateBook, deleteBook} from './actions/bookActions';
+import {postBooks, updateBook} from './actions/bookActions';
 import {addToCart} from './actions/cartActions';
 import registerServiceWorker from './registerServiceWorker';
 
