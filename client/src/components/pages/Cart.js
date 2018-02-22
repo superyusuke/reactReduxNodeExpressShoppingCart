@@ -52,8 +52,8 @@ class Cart extends React.Component {
                 <Modal.Title>Thank you!</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <h6>Your order has been saved</h6>
-                <p>You will receive an email confirmation</p>
+                <h4>Your order has been saved.</h4>
+                <p>You will receive an email confirmation.</p>
               </Modal.Body>
               <Modal.Footer>
                 <Col xs={6}>
