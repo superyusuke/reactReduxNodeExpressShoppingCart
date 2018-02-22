@@ -9,11 +9,18 @@ import {
   ButtonGroup,
   Button,
   Label,
+  Modal,
 } from 'react-bootstrap';
 
 class Cart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {showModal: false};
+  }
+
   renderCart() {
     const {cart} = this.props;
+    console.log(cart);
     const cartItems = cart.map((item) => {
       return (
           <Panel>
@@ -41,6 +48,21 @@ class Cart extends React.Component {
                 </Col>
               </Row>
             </Panel.Body>
+            <Modal show={this.state.showModal} onHide={this.close}>
+              <Modal.Header closeButton>
+                <Modal.Title>Thank you!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <h6>Your order has been saved</h6>
+                <p>You will receive an email confirmation</p>
+              </Modal.Body>
+              <Modal.Footer>
+                <Col xs={6}>
+                  <h6>total $:</h6>
+                </Col>
+                <Button onClick={this.close}>Close</Button>
+              </Modal.Footer>
+            </Modal>
           </Panel>
       );
     });
@@ -49,6 +71,11 @@ class Cart extends React.Component {
           <Panel.Heading>Cart</Panel.Heading>
           <Panel.Body>
             {cartItems}
+            <h6>Total amount:{cart.totalAmount}</h6>
+            <Button onClick={this.open.bind(
+                this)} bsStyle="success" bsSize="small">
+              PROCEED TO CHECKOUT
+            </Button>
           </Panel.Body>
         </Panel>
     );
@@ -66,6 +93,14 @@ class Cart extends React.Component {
         </Panel>
     );
   }
+
+  open = () => {
+    this.setState({showModal: true});
+  };
+
+  close = () => {
+    this.setState({showModal: false});
+  };
 
   onIncrement = (id) => {
     this.props.updateToCart(id, 1);
