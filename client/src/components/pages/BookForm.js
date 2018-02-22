@@ -9,10 +9,11 @@ import {
   Panel,
 } from 'react-bootstrap';
 
-import {postBooks} from '../../actions/bookActions'
+import {postBooks, deleteBook} from '../../actions/bookActions';
 
 class BookForm extends React.Component {
   render() {
+    const {books} = this.props;
     return (
         <Well>
           <Panel>
@@ -37,6 +38,21 @@ class BookForm extends React.Component {
               </Button>
             </Panel.Body>
           </Panel>
+          <Panel>
+            <Panel.Body>
+              <FormGroup controlId="formControlsSelect">
+                <ControlLabel>Select a book id to</ControlLabel>
+                <FormControl inputRef={
+                  ref => {this.delete = ref;}} componentClass="select" placeholder="select">
+                  <option value={0}>select</option>
+                  {books.map(
+                      book => <option value={book.id}>{book.title}</option>)}
+                </FormControl>
+              </FormGroup>
+              <Button onClick={this.handleDelete} bsStyle="danger">Delete
+                book</Button>
+            </Panel.Body>
+          </Panel>
         </Well>);
   }
 
@@ -47,15 +63,29 @@ class BookForm extends React.Component {
     const bookToPost = [
       {title, description, price},
     ];
+    this.props.postBook(bookToPost);
+  };
 
-    this.props.postBook(bookToPost)
+  handleDelete = () => {
+    const deleteTargetId = this.delete.value;
+    if (deleteTargetId === '0') {
+      return;
+    }
+    this.props.deleteBook(deleteTargetId);
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     postBook: (books) => dispatch(postBooks(books)),
+    deleteBook: (id) => dispatch(deleteBook(id)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(BookForm);
+const mapStateToProps = state => {
+  return {
+    books: state.books,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookForm);

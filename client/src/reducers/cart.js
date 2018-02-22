@@ -1,12 +1,3 @@
-const defaultCart = [
-  {title: 'title1'},
-  {title: 'title1'},
-  {title: 'title1'},
-  {title: 'title1'},
-  {title: 'title1'},
-  {title: 'title1'},
-];
-
 const cart = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TO_CART':

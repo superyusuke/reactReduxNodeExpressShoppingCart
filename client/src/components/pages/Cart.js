@@ -5,7 +5,6 @@ import {
   Row,
   Col,
   Panel,
-  Well,
   ButtonGroup,
   Button,
   Label,
@@ -19,7 +18,7 @@ class Cart extends React.Component {
   }
 
   renderCart() {
-    const {cart} = this.props;
+    const {cart, totalQuantity, totalAmount} = this.props;
     console.log(cart);
     const cartItems = cart.map((item) => {
       return (
@@ -58,7 +57,7 @@ class Cart extends React.Component {
               </Modal.Body>
               <Modal.Footer>
                 <Col xs={6}>
-                  <h6>total $:</h6>
+                  <h6>total $: {totalAmount}</h6>
                 </Col>
                 <Button onClick={this.close}>Close</Button>
               </Modal.Footer>
@@ -71,7 +70,8 @@ class Cart extends React.Component {
           <Panel.Heading>Cart</Panel.Heading>
           <Panel.Body>
             {cartItems}
-            <h6>Total amount:{cart.totalAmount}</h6>
+            <h6>Total quantity: {totalQuantity}</h6>
+            <h6>Total amount $: {totalAmount}</h6>
             <Button onClick={this.open.bind(
                 this)} bsStyle="success" bsSize="small">
               PROCEED TO CHECKOUT
@@ -120,9 +120,19 @@ class Cart extends React.Component {
   };
 }
 
+const calculateTotalQuantity = cartItem => {
+  return cartItem.map(item => item.quantity).reduce((a, b) => {return a + b;}, 0);
+};
+
+const calculateTotalAmount = cartItem => {
+  return cartItem.map(item => item.quantity * item.price).reduce((a, b) => {return a + b;}, 0);
+};
+
 const mapStateToProps = state => {
   return {
     cart: state.cart,
+    totalQuantity: calculateTotalQuantity(state.cart),
+    totalAmount: calculateTotalAmount(state.cart),
   };
 };
 

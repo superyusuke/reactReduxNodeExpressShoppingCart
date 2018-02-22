@@ -10,14 +10,16 @@ const books = (state = [], action) => {
       return [
         ...state.slice(0, indexToUpdate),
         newBookToUpdate,
-        ...state.slice(indexToUpdate + 1)];
+        ...state.slice(indexToUpdate + 1),
+      ];
 
     case 'DELETE_BOOK':
       const indexToDelete = state.findIndex(
           (book) => book.id === action.payload.id);
       return [
         ...state.slice(0, indexToDelete),
-        ...state.slice(indexToDelete + 1)];
+        ...state.slice(indexToDelete + 1),
+      ];
 
     default:
       return state;

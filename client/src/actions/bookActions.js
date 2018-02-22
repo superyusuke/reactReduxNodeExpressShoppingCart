@@ -12,9 +12,9 @@ export const updateBook = book => {
   };
 };
 
-export const deleteBook = book => {
+export const deleteBook = id => {
   return {
     type: 'DELETE_BOOK',
-    payload: book,
+    payload: {id: parseInt(id, 10)},
   };
 };

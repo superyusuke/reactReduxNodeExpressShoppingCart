@@ -6,15 +6,12 @@ import {Provider} from 'react-redux';
 import logger from 'redux-logger';
 import BookList from './components/pages/BookList';
 import rootReducer from './reducers';
-import {postBooks, updateBook} from './actions/bookActions';
-import {addToCart} from './actions/cartActions';
+import {postBooks} from './actions/bookActions';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(logger),
 ));
-
-store.subscribe(() => console.log(store.getState()));
 
 const testBooks = [
   {
@@ -44,11 +41,6 @@ const testBooks = [
 ];
 
 store.dispatch(postBooks(testBooks));
-store.dispatch(updateBook({
-  id: 1,
-  title: 'changed',
-  price: 10000,
-}));
 
 ReactDOM.render(
     <Provider store={store}>
